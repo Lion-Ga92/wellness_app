@@ -23,8 +23,8 @@ class Text_backend:
             message = client.messages \
                             .create(
                                 body= self.mssg_1,
-                                from_='REDACTED FOR PRIVACY PURPOSES',
-                                to='REDACTED FOR PRIVACY PURPOSES'
+                                from_='+14159154317',
+                                to='7078629378'
                                 )
 
             print(message.sid)
@@ -40,8 +40,8 @@ class Text_backend:
             message1 = client.messages \
                             .create(
                                 body= 'Good morning: Remember to take your meds, and do your chores',
-                                from_='REDACTED FOR PRIVACY PURPOSES',
-                                to='REDACTED FOR PRIVACY PURPOSES'
+                                from_='+14159154317',
+                                to='7078629378'
                                 )
 
             print(message1.sid)
@@ -57,8 +57,8 @@ class Text_backend:
             message2 = client.messages \
                             .create(
                                 body= 'And take a shower!',
-                                from_='REDACTED FOR PRIVACY PURPOSES',
-                                to='REDACTED FOR PRIVACY PURPOSES'
+                                from_='+14159154317',
+                                to='7078629378'
                                 )
 
             print(message2.sid)
@@ -280,6 +280,26 @@ class db_backEnd:
         query = "INSERT INTO wellCheck VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);"
         self.c.execute(query, data_1)
         self.conn.commit()
+
+
+    def db_viewer(self):
+        self.conn = sqlite3.connect("well_check.db")
+        my_window= Toplevel()
+        frame_f = Frame(my_window)
+        frame_f.pack()
+        c = self.conn.cursor()
+        r_set = c.execute('''SELECT * from wellCheck''')
+        i = 0
+        for member in r_set:
+            for j in range(len(member)):
+                t = Entry(my_window, width=10)
+                t.grid(row=i, column=j)
+                t.insert(END, member[j])
+            i = i + 1
+
+        my_window.mainloop()
+        
+
 
 
 

@@ -1,3 +1,4 @@
+from sqlite3.dbapi2 import Cursor
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -94,6 +95,9 @@ def launch_alerts():
 
 launch_butt = Button(frame_3, text="=Alerts=", relief="raised", command=launch_alerts)
 launch_butt.pack()
+
+db_viewer_bt = Button(frame_3, text="Viewer", relief="raised", command= lambda : db_backEnd.db_viewer())
+db_viewer_bt.pack()
 
 db_back = db_backEnd("a", "b", "j", "d", "e", "f", "g", "h", "i", "z", "c")
 db_back.initialize_db("z")

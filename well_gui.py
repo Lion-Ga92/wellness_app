@@ -87,25 +87,25 @@ rem_chrs_check.grid(row=4, column=5)
 
 #frame_3 widgets 
 lbl_menu = Label(frame_3, text="==MENU==", relief="raised")
-lbl_menu.pack()
+lbl_menu.grid(row=1, column=1)
 
 def launch_alerts():
     alrt_sys = text_Gui()
     alrt_sys.gui_Txt_alrt()
 
 launch_butt = Button(frame_3, text="=Alerts=", relief="raised", command=launch_alerts)
-launch_butt.pack()
+launch_butt.grid(row=2, column=1)
 
-db_viewer_bt = Button(frame_3, text="Viewer", relief="raised", command= lambda : db_backEnd.db_viewer())
-db_viewer_bt.pack()
+db_viewer_bt = Button(frame_3, text="Viewer", relief="raised", command= lambda : db_back.db_viewer())
+db_viewer_bt.grid(row=3, column=1)
 
-db_back = db_backEnd("a", "b", "j", "d", "e", "f", "g", "h", "i", "z", "c")
-db_back.initialize_db("z")
+db_back = db_backEnd()
+db_back.initialize_db()
 
 def add_vals():
     db_back.add_vals(mds_830.get(), meltn_use.get(), sleep_10pm.get(), wrkout_today.get(), walk_wrkout.get(), tai_stretch.get(), corn_cut.get(), takeout_trsh.get(), rem_chores.get())
     messagebox.showinfo(message="Data submitted!!!")
 
 submit_bttn = Button(frame_3, text="=Submit=", command=add_vals, relief="raised")
-submit_bttn.pack()
+submit_bttn.grid(row=4, column=1)
 root.mainloop()

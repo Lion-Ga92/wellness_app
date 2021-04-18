@@ -237,20 +237,10 @@ class text_Gui:
 
 
 class db_backEnd:
-    def __init__(self, a, b, j, d, e, f, g, h, i, z, c):
-        self.a = a
-        self.b = b
-        self.j = j
-        self.d = d
-        self.e = e
-        self.f = f
-        self.g = g
-        self.h = h
-        self.i = i
-        self.z = z 
-        self.c = c 
+    def __init__(self):
+        self = self
 
-    def initialize_db(self, z):
+    def initialize_db(self):
         self.j = 1
 
         self.conn = sqlite3.connect("well_check.db")
@@ -284,15 +274,47 @@ class db_backEnd:
 
     def db_viewer(self):
         self.conn = sqlite3.connect("well_check.db")
-        my_window= Toplevel()
+        my_window= Tk()
         frame_f = Frame(my_window)
-        frame_f.pack()
+        frame_f.grid(row=1, column=1)
+        #frame_f labels 
+        lbl_meds = Label(frame_f, text="Meds 0830      ", relief="raised")
+        lbl_meds.grid(row=1, column=1)
+
+        lbl_meltnin = Label(frame_f, text="Melatonin    ", relief="raised")
+        lbl_meltnin.grid(row=1, column=2)
+
+        lbl_sleep = Label(frame_f, text="Sleep 10pm     ", relief="raised")
+        lbl_sleep.grid(row=1, column=3)
+
+        lbl_workout = Label(frame_f, text="Workout       ", relief="raised")
+        lbl_workout.grid(row=1, column=4)
+
+        lbl_walk = Label(frame_f, text="Walk around       ", relief="raised")
+        lbl_walk.grid(row=1, column=5)
+
+
+        lbl_taichi = Label(frame_f, text="Tai-chi         ", relief="raised")
+        lbl_taichi.grid(row=1, column=6)
+
+
+        lbl_corn = Label(frame_f, text="Cut corn           ", relief="raised")
+        lbl_corn.grid(row=1, column=7)
+
+        lbl_trash = Label(frame_f, text="Trash              ", relief="raised")
+        lbl_trash.grid(row=1, column=8)
+
+        lbl_chores = Label(frame_f, text="Chore             ", relief="raised")
+        lbl_chores.grid(row=1, column=9)
+
+        frame_g = Frame(my_window)
+        frame_g.grid(row=2, column=1)
         c = self.conn.cursor()
         r_set = c.execute('''SELECT * from wellCheck''')
         i = 0
         for member in r_set:
             for j in range(len(member)):
-                t = Entry(my_window, width=10)
+                t = Entry(frame_g, width=10)
                 t.grid(row=i, column=j)
                 t.insert(END, member[j])
             i = i + 1
